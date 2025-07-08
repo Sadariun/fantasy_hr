@@ -2,6 +2,7 @@
   "name": "frostnorth-talent-guild",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Sadariun.github.io/fantasy_hr",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -8,7 +8,7 @@ const repoName = 'fantasy_hr';
 const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
-  base: isProd ? `/${repoName}/` : '/',
+  base: isProd ? './' : '/',
   plugins: [react()],
   resolve: {
     alias: {

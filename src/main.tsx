@@ -7,7 +7,18 @@ import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter basename={import.meta.env.PROD ? '/fantasy_hr' : '/'}>
+    <BrowserRouter
+      basename={(() => {
+        const base = import.meta.env.BASE_URL || '/';
+        if (import.meta.env.PROD) {
+          // For production build: if base is './', use empty basename so paths are relative.
+          if (base === './') return '';
+          return base.replace(/\/$/, '');
+        }
+        // Dev server
+        return '/';
+      })()}
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>

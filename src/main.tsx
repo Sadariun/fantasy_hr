@@ -9,13 +9,17 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter
       basename={(() => {
-        const base = import.meta.env.BASE_URL || '/';
-        if (import.meta.env.PROD) {
-          // For production build: if base is './', use empty basename so paths are relative.
-          if (base === './') return '';
-          return base.replace(/\/$/, '');
-        }
-        // Dev server
+        if (typeof window === 'undefined') return '/';
+
+        // 1. Running from local file system – use empty basename
+        if (window.location.protocol === 'file:') return '';
+
+        const repoBase = '/fantasy_hr';
+
+        // 2. GitHub Pages – path starts with /fantasy_hr
+        if (window.location.pathname.startsWith(repoBase)) return repoBase;
+
+        // 3. Dev server or other hosting at root
         return '/';
       })()}
     >

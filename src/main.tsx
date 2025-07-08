@@ -7,7 +7,13 @@ import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+    <BrowserRouter
+      basename={
+        import.meta.env.PROD
+          ? import.meta.env.BASE_URL.replace(/\/$/, '')
+          : '/'
+      }
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>
